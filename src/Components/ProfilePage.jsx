@@ -8,7 +8,7 @@ const ProfilePage = () => {
             </div>
             <div className="avatar">
                 <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="" />
-                <div><b>Raman T.</b></div>
+                <div><b>Raman Tamilin.</b></div>
             </div>
             <div className="addPost">
                 <div className="caption">My Posts</div>
