@@ -1,0 +1,23 @@
+.addPost {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.caption {
+    font-size: 20px;
+}
+
+.addPost textarea {
+    width: 99%;
+
+    margin: 5px;
+}
+
+.addPost button {
+    width: 100px;
+    height: 30px;
+    
+    border: 2px solid grey;
+    border-radius: 10px;
+}

@@ -1,0 +1,23 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.dialogsItem a {
+    text-decoration: none;
+}
+
+.dialogsItem a:hover {
+    text-decoration: underline;
+}
+
+.dialogsItem a:hover,
+.dialogsItem a.active {
+    color: #000;
+    font-weight: bold;
+}
+
+.dialogsItem div::before {
+    content: "●";
+    margin-right: 5px;
+}
