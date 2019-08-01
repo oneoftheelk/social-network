@@ -10,7 +10,11 @@ const ProfilePage = (props) => {
                 <img className={style.background} src="https://funkyimg.com/i/2VBgT.jpg" alt="" />
             </div>
             <ProfileInfo />
-            <MyPosts postsData={props.state.posts} />
+            <MyPosts
+                addPost={props.addPost}
+                updateNewPostText={props.updateNewPostText}
+                postsData={props.profilePage.posts}
+                newPostCurrentText={props.profilePage.newPostCurrentText} />
         </div>
     );
 }
