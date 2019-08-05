@@ -5,24 +5,30 @@ import Header from './Components/Header/Header';
 import Nav from './Components/Navbar/Nav';
 import ProfilePage from './Components/Profile/ProfilePage';
 import DialogsPage from './Components/Dialogs/DialogsPage';
+import propTypes from 'prop-types';
 
 const App = (props) => {
     return (
         <div className="wrapper">
             <Header />
-            <Nav state={props.state.navbar} />
+            <Nav nav={props.state.navbar} />
             <div className="pagesWrapper">
                 <Route path="/profile"
                     render={() => <ProfilePage
                         profilePage={props.state.profilePage}
-                        addPost={props.addPost}
-                        updateNewPostText={props.updateNewPostText} />} />
+                        dispatch={props.dispatch} />} />
                 <Route path="/dialogs"
                     render={() => <DialogsPage
-                        state={props.state.dialogsPage} />} />
+                        dialogsPage={props.state.dialogsPage}
+                        dispatch={props.dispatch} />} />
             </div>
         </div>
     );
 }
+
+App.propTypes = {
+    state: propTypes.object.isRequired,
+    dispatch: propTypes.func.isRequired
+};
 
 export default App;

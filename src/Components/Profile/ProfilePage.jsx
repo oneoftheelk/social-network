@@ -2,6 +2,7 @@ import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './MyPosts/ProfileInfo/ProfileInfo';
 import style from './ProfilePage.module.css';
+import propTypes from 'prop-types';
 
 const ProfilePage = (props) => {
     return (
@@ -11,12 +12,16 @@ const ProfilePage = (props) => {
             </div>
             <ProfileInfo />
             <MyPosts
-                addPost={props.addPost}
-                updateNewPostText={props.updateNewPostText}
+                dispatch={props.dispatch}
                 postsData={props.profilePage.posts}
                 newPostCurrentText={props.profilePage.newPostCurrentText} />
         </div>
     );
+}
+
+ProfilePage.propTypes = {
+    profilePage: propTypes.object.isRequired,
+    dispatch: propTypes.func.isRequired
 }
 
 export default ProfilePage;

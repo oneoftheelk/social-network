@@ -2,9 +2,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom'
 import Friends from './Friends/Friends';
 import style from './Nav.module.css';
+import propTypes from 'prop-types';
 
 const Nav = (props) => {
-    let friendsElement = props.state.friends.map( item => {
+    let friendsElement = props.nav.friends.map( item => {
         return <Friends id={item.id} name={item.name} />
     })
 
@@ -33,6 +34,10 @@ const Nav = (props) => {
             </div>        
         </nav>
     );
+}
+
+Nav.propTypes = {
+    nav: propTypes.object.isRequired
 }
 
 export default Nav;

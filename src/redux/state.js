@@ -1,52 +1,60 @@
-import { rerenderEntireTree } from "../render";
+import profileReducer from "./profileReducer";
+import messageReducer from "./messageReducer";
+import navbarReducer from "./navbarReducer";
 
-let state = {
-    profilePage: {
-        posts: [
-            {id: 1, message: "Hey, why everyone love Dimych?", likeCount: 15},
-            {id: 2, message: "This is my first project!", likeCount: 23}
-        ],
-        newPostCurrentText: "currentText"
+let store = {
+    _state: {
+        profilePage: {
+            posts: [
+                {id: 1, message: "Hey, why everyone love Dimych?", likeCount: 15},
+                {id: 2, message: "This is my first project!", likeCount: 23}
+            ],
+            newPostCurrentText: ""
+        },
+        dialogsPage: {
+            messages: [
+                {id: 1, message: "message1", from: "me"},
+                {id: 2, message: "message2", from: "friend"},
+                {id: 3, message: "message3", from: "me"}
+            ],
+            dialogs: [
+                {id: 1, name: "Dmitry"},
+                {id: 2, name: "Jane"},
+                {id: 3, name: "Mary"},
+                {id: 4, name: "Ian"},
+                {id: 5, name: "Alice"}
+            ],
+        },
+        navbar: {
+            friends: [
+                {id: 1, name: "Dmitry"},
+                {id: 2, name: "Jane"},
+                {id: 3, name: "Mary"},
+                {id: 4, name: "Ian"},
+                {id: 5, name: "Alice"}
+            ]
+        }
     },
-    dialogsPage: {
-        messages: [
-            {id: 1, message: "message1"},
-            {id: 2, message: "message2"},
-            {id: 3, message: "message3"}
-        ],
-        dialogs: [
-            {id: 1, name: "Dmitry"},
-            {id: 2, name: "Jane"},
-            {id: 3, name: "Mary"},
-            {id: 4, name: "Ian"},
-            {id: 5, name: "Alice"}
-        ],
+
+    getState() {
+        return this._state;
     },
-    navbar: {
-        friends: [
-            {id: 1, name: "Dmitry"},
-            {id: 2, name: "Jane"},
-            {id: 3, name: "Mary"},
-            {id: 4, name: "Ian"},
-            {id: 5, name: "Alice"}
-        ]
+
+    _callSubscriber() {
+        console.log("state was changed");
+    },
+
+    subscribe(observer) {
+        this._callSubscriber = observer;
+    },
+
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = messageReducer(this._state.dialogsPage, action);
+        this._state.navbar = navbarReducer(this._state.navbar, action);
+
+        this._callSubscriber(this._state);
     }
 }
 
-export let addPost = () => {
-    let newPost = {
-        id: 5,
-        message: state.profilePage.newPostCurrentText,
-        likeCount: 0
-    };
-    state.profilePage.newPostCurrentText = "";
-    state.profilePage.posts.push(newPost);
-    rerenderEntireTree(state);
-}
-
-export let updateNewPostText = (text) => {
-    state.profilePage.newPostCurrentText = text;
-    rerenderEntireTree(state);
-}
-
-export default state;
+export default store;
