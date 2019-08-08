@@ -1,5 +1,8 @@
 const ADD_MESSAGE = "ADD-MESSAGE";
 
+// 1.4 Принимает нужную часть стейта и экшен.
+// Если тип экшена совпадает, изменяет стейт и возвращает его.
+// Иначе возвращает неизменённый стейт.
 const messageReducer = (state, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
@@ -16,6 +19,7 @@ const messageReducer = (state, action) => {
     }
 }
 
+// 1.1 Создаётся action creator, возвращающий объект с типом и исполнителем (executor) --> DialogsPage
 export const addMessageActionCreator = (executor) => ({type: ADD_MESSAGE, executor: executor});
 
 export default messageReducer;

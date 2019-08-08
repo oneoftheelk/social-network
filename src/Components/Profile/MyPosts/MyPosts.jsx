@@ -9,15 +9,16 @@ const MyPosts = (props) => {
         return <Post message={item.message} likeCount={item.likeCount} />
     })
 
-    // let newPostElement = React.createRef();
-
+    // 1.2 При нажатии на кнопку вызывается метод dispatch,
+    // которому передаётся экшен с типом --> store.js
     let addPost = () => {
         props.dispatch( addPostActionCreator() );
     }
 
+    // 1.2 При изменении текста в инпуте вызывается метод dispatch,
+    // которому передаётся экшен с типом и новым текстом --> store.js
     let onPostChange = (event) => {
-        let text = event.target.value
-        // let text = newPostElement.current.value;
+        let text = event.currentTarget.value
         props.dispatch( updateNewPostTextActionCreator(text) );
     }
 
@@ -27,7 +28,6 @@ const MyPosts = (props) => {
                 <div className={style.caption}>My Posts</div>
                 <textarea
                     onChange={ onPostChange }
-                    // ref={newPostElement}
                     value={props.newPostCurrentText}
                     placeholder="your news..."/>
                 <button onClick={ addPost }>Add post</button>

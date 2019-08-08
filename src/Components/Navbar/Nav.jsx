@@ -5,6 +5,7 @@ import style from './Nav.module.css';
 import propTypes from 'prop-types';
 
 const Nav = (props) => {
+    // Методом map на основании массива друзей создаёт новый массив с компонентами Friends.
     let friendsElement = props.nav.friends.map( item => {
         return <Friends id={item.id} name={item.name} />
     })

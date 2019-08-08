@@ -40,14 +40,18 @@ let store = {
         return this._state;
     },
 
+    // Создание метода-заглушки.
     _callSubscriber() {
         console.log("state was changed");
     },
 
+    // 2.2 Перезаписывает _callSubscriber переданной функцией (rerenderEntireTree).
     subscribe(observer) {
         this._callSubscriber = observer;
     },
 
+    // 1.3 Вызывает Reducer, передаёт нужную часть стейта и экшен --> ...Reducer
+    // 2.3 Вызывает _callSubscriber, передавая ему новый стейт, происходит перерисовка всего содержимого.
     dispatch(action) {
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = messageReducer(this._state.dialogsPage, action);
