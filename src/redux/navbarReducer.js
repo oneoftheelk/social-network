@@ -1,7 +1,14 @@
-// 4. Принимает нужную часть стейта и экшен.
-// Если тип экшена совпадает, изменяет стейт и возвращает его.
-// Иначе возвращает неизменённый стейт.
-const navbarReducer = (state, action) => {
+let initialState = {
+    friends: [
+        {id: 1, name: "Dmitry"},
+        {id: 2, name: "Jane"},
+        {id: 3, name: "Mary"},
+        {id: 4, name: "Ian"},
+        {id: 5, name: "Alice"}
+    ]
+};
+
+const navbarReducer = (state = initialState, action) => {
 
     return state;
 }

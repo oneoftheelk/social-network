@@ -1,10 +1,15 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT= "UPDATE-NEW-POST-TEXT";
 
-// 4. Принимает нужную часть стейта и экшен.
-// Если тип экшена совпадает, изменяет стейт и возвращает его.
-// Иначе возвращает неизменённый стейт.
-const profileReducer = (state, action) => {
+let initialState = {
+    posts: [
+        {id: 1, message: "Hey, why everyone love Dimych?", likeCount: 15},
+        {id: 2, message: "This is my first project!", likeCount: 23}
+    ],
+    newPostCurrentText: ""
+};
+
+const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             let newPost = {
@@ -23,9 +28,7 @@ const profileReducer = (state, action) => {
     }
 }
 
-// 1. Создаётся action creator, возвращающий объект с типом --> DialogsPage
 export const addPostActionCreator = () => ({type: ADD_POST });
-// 1. Создаётся action creator, возвращающий объект с типом и новым текстом (text) --> DialogsPage
 export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, text: text});
 
 export default profileReducer;

@@ -2,25 +2,21 @@ import React from 'react';
 import { Route } from 'react-router-dom'
 import './App.css';
 import Header from './Components/Header/Header';
-import Nav from './Components/Navbar/Nav';
+import NavContainer from './Components/Navbar/NavContainer';
 import ProfilePage from './Components/Profile/ProfilePage';
-import DialogsPage from './Components/Dialogs/DialogsPage';
+import DialogsPageContainer from './Components/Dialogs/DialogsPageContainer';
 import propTypes from 'prop-types';
 
-const App = (props) => {
+const App = () => {
     return (
         <div className="wrapper">
             <Header />
-            <Nav nav={props.state.navbar} />
+            <NavContainer />
             <div className="pagesWrapper">
                 <Route path="/profile"
-                    render={() => <ProfilePage
-                        profilePage={props.state.profilePage}
-                        dispatch={props.dispatch} />} />
+                    render={() => <ProfilePage />} />
                 <Route path="/dialogs"
-                    render={() => <DialogsPage
-                        dialogsPage={props.state.dialogsPage}
-                        dispatch={props.dispatch} />} />
+                    render={() => <DialogsPageContainer />} />
             </div>
         </div>
     );
