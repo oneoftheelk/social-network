@@ -2,42 +2,35 @@ import React from 'react';
 import { NavLink } from 'react-router-dom'
 import Friends from './Friends/Friends';
 import style from './Nav.module.css';
-import propTypes from 'prop-types';
 
 const Nav = (props) => {
     let friendsElement = props.friends.map( item => {
-        return <Friends id={item.id} name={item.name} />
-    })
+        return <Friends key={item.id} id={item.id} name={item.name} />
+    });
+
+    let linksElement = props.links.map( link => {
+        return <div className={link.linkTo === "/friends" && style.friendsNav}>
+            <NavLink to={link.linkTo}
+                onClick={() => changeLink(link.id)}
+                activeClassName="active"
+                className={link.id === props.activeLink && style.active}>
+                {`${link.linkTo.slice(1, 2).toUpperCase()}${link.linkTo.slice(2)}`}
+            </NavLink>
+        </div>
+    });
+
+    const changeLink = (newActiveLink) => {
+        props.changeLink(newActiveLink);
+    }
 
     return (
         <nav className={style.nav}>
-            <div>
-                <NavLink to="/profile" activeClassName="active">Profile</NavLink>
-            </div>
-            <div>
-                <NavLink to="/dialogs" activeClassName="active">Dialogs</NavLink>
-            </div>
-            <div>
-                <NavLink to="/news" activeClassName="active">News</NavLink>
-            </div>
-            <div>
-                <NavLink to="/music" activeClassName="active">Music</NavLink>
-            </div>
-            <div>
-                <NavLink to="/settings" activeClassName="active">Settings</NavLink>
-            </div>
-            <div className={style.friendsNav}>
-                <NavLink to="/friends" activeClassName="active">Friends</NavLink>
-            </div>
+            {linksElement}
             <div className={style.friends}>
                 {friendsElement}
             </div>        
         </nav>
     );
-}
-
-Nav.propTypes = {
-    nav: propTypes.object.isRequired
 }
 
 export default Nav;

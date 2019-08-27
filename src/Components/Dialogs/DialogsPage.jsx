@@ -2,7 +2,6 @@ import React from 'react';
 import DialogsItem from './DialogsItem/DialogsItem';
 import MessagesItem from './MessagesItem/MessagesItem';
 import style from './DialogsPage.module.css';
-import propTypes from 'prop-types';
 
 const DialogsPage = (props) => {
     let state = props.dialogsPage;
@@ -32,10 +31,5 @@ const DialogsPage = (props) => {
         </div>
     );
 }
-
-// DialogsPage.propTypes = {
-//     dialogsPage: propTypes.object.isRequired,
-//     dispatch: propTypes.func.isRequired
-// }
 
 export default DialogsPage;

@@ -1,30 +1,27 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
 import './App.css';
-import Header from './Components/Header/Header';
 import NavContainer from './Components/Navbar/NavContainer';
-import ProfilePage from './Components/Profile/ProfilePage';
+import UsersContainer from './Components/Users/UsersContainer';
 import DialogsPageContainer from './Components/Dialogs/DialogsPageContainer';
-import propTypes from 'prop-types';
+import ProfileContainer from './Components/Profile/ProfilePageContainer';
+import HeaderContainer from './Components/Header/HeaderContainer';
 
 const App = () => {
     return (
         <div className="wrapper">
-            <Header />
+            <HeaderContainer />
             <NavContainer />
             <div className="pagesWrapper">
-                <Route path="/profile"
-                    render={() => <ProfilePage />} />
+                <Route path="/profile/:userID?"
+                    render={() => <ProfileContainer />} />
                 <Route path="/dialogs"
                     render={() => <DialogsPageContainer />} />
+                <Route path="/users"
+                    render={() => <UsersContainer />} />
             </div>
         </div>
     );
 }
-
-App.propTypes = {
-    state: propTypes.object.isRequired,
-    dispatch: propTypes.func.isRequired
-};
 
 export default App;

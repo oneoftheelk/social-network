@@ -1,24 +1,15 @@
-import React from 'react';
-import propTypes from 'prop-types';
 import Nav from './Nav';
 import { connect } from 'react-redux';
+import { changeLink } from './../../redux/navbarReducer';
 
 let mapStateToProps = (state) => {
     return {
-        friends: state.navbar.friends
+        friends: state.navbar.friends,
+        links: state.navbar.links,
+        activeLink: state.navbar.activeLink
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        
-    }
-}
-
-const NavContainer = connect(mapStateToProps, mapDispatchToProps) (Nav);
-
-// NavContainer.propTypes = {
-//     nav: propTypes.object.isRequired
-// }
+const NavContainer = connect(mapStateToProps, {changeLink}) (Nav);
 
 export default NavContainer;

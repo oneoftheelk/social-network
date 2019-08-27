@@ -1,6 +1,4 @@
-import React from 'react';
 import { addPostActionCreator, updateNewPostTextActionCreator } from './../../../redux/profileReducer';
-import propTypes from 'prop-types';
 import MyPosts from './MyPosts'
 import { connect } from 'react-redux';
 
@@ -25,11 +23,5 @@ let mapDispatchToProps = (dispatch) => {
 }
 
 const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps) (MyPosts);
-
-// MyPosts.propTypes = {
-//     postsData: propTypes.array.isRequired,
-//     newPostCurrentText: propTypes.string.isRequired,
-//     dispatch: propTypes.func.isRequired
-// }
 
 export default MyPostsContainer;
